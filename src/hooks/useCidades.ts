@@ -11,6 +11,9 @@ export default function useCidades({ uf }: { uf: string }) {
 
   useEffect(() => {
     if (!uf) return;
+    if (uf === 'UF') {
+      return setCidades([]);
+    }
     setLoading(true);
     fetch(
       `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios?orderBy=nome`
