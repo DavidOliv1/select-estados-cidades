@@ -9,6 +9,7 @@ export default function useCidades({ uf }: { uf: string }) {
   const [cidades, setCidades] = useState<ICidade[]>([]);
 
   useEffect(() => {
+    if (!uf) return;
     fetch(
       `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios?orderBy=nome`
     )
