@@ -15,6 +15,7 @@ function App() {
   return (
     <div>
       <select onChange={handleUpdateEstado}>
+        <option>UF</option>
         {estados.map((estado) => (
           <option key={estado.id} value={estado.sigla}>
             {estado.nome}
