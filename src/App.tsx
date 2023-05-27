@@ -6,7 +6,7 @@ import { useState } from 'react';
 function App() {
   const { estados } = useEstados();
   const [selectEstado, setSelectEstado] = useState('');
-  const { cidades } = useCidades({ uf: selectEstado });
+  const { cidades, loading } = useCidades({ uf: selectEstado });
 
   const handleUpdateEstado = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectEstado(e.target.value);
@@ -22,11 +22,17 @@ function App() {
           </option>
         ))}
       </select>
-      <select>
-        {cidades.map((cidade) => (
-          <option key={cidade.id}>{cidade.nome}</option>
+
+      {cidades.length > 0 &&
+        (loading ? (
+          <p>Carregando...</p>
+        ) : (
+          <select>
+            {cidades.map((cidade) => (
+              <option key={cidade.id}>{cidade.nome}</option>
+            ))}
+          </select>
         ))}
-      </select>
     </div>
   );
 }
